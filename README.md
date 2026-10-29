@@ -33,19 +33,19 @@ The repository revolves around two complementary superpowers:
 
 ```mermaid
 flowchart TD
-    A[Agent Failure / Behavioral Defect] --> B[/rca: Root Cause Analysis]
-    B --> C{5 Diagnostic Layers}
-    C -->|Layer 1: Prompt| D[Prompt Calibration]
-    C -->|Layer 2: Rules| E[Rule Gap / Conflict]
-    C -->|Layer 3: Skills| F[Missing / Weak Skill]
-    C -->|Layer 4: Harness| G[System Harness Conflict]
-    C -->|Layer 5: Context| H[Context Saturation]
+    A["Agent Failure / Behavioral Defect"] --> B["/rca: Root Cause Analysis"]
+    B --> C{"5 Diagnostic Layers"}
+    C -->|Layer 1: Prompt| D["Prompt Calibration"]
+    C -->|Layer 2: Rules| E["Rule Gap / Conflict"]
+    C -->|Layer 3: Skills| F["Missing / Weak Skill"]
+    C -->|Layer 4: Harness| G["System Harness Conflict"]
+    C -->|Layer 5: Context| H["Context Saturation"]
     
-    E & F --> I[/rc: Rule & Skill Crafter]
-    I --> J[Audience Routing: Global / Project / Role]
-    J --> K[Calibrated Escalation Level 0 - 6]
-    K --> L[Atomic In-Place Disk Update]
-    L --> M[Permanent Behavioral Immune Response]
+    E & F --> I["/rc: Rule & Skill Crafter"]
+    I --> J["Audience Routing: Global / Project / Role"]
+    I --> K["Calibrated Escalation Level 0 - 6"]
+    K --> L["Atomic In-Place Disk Update"]
+    L --> M["Permanent Behavioral Immune Response"]
 
     style A fill:#ff4d4f,stroke:#333,stroke-width:1px,color:#fff
     style B fill:#1890ff,stroke:#333,stroke-width:1px,color:#fff
