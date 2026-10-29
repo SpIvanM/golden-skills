@@ -118,6 +118,23 @@ A structured, bias-aware diagnostic framework for AI agents.
 
 ---
 
+### 3. `/human-requirements` — Human Requirements Engineering
+📁 **Path:** `human-requirements/` • **Description:** *"Use when you need to write software requirement, product specification, system user story, or acceptance criteria"*
+
+Engineers dense, human-readable specifications with maximum signal, eliminating synthetic AI verbosity and corporate boilerplate. Embodies a principal systems analyst with deep architecture expertise.
+
+#### Core Pillars
+- **Anti-AI-Slop Typography:** Eliminates inline bold pseudotitles (`- **Title**: ...`), curly quotes, and synthetic em-dashes. Relies on clean Markdown headings and active verbs.
+- **Layered Progressive Disclosure:** Strict 3-tier separation:
+  - *Layer 1 (Business):* Strategic goals, opaque black-box system behavior, CJM through user eyes, explicit scope bounds.
+  - *Layer 2 (System):* Data contracts, state transitions, validation logic, precise edge cases.
+  - *Layer 3 (Architecture):* Component topology, asynchronous sequence flows, communication protocols, non-functional SLAs.
+- **Single-Screen Ergonomics:** Chunks specifications into compact sections fitting a single viewport to eliminate reader cognitive fatigue.
+- **Visual Diagramming Protocol ([`references/diagrams.md`](human-requirements/references/diagrams.md)):** Strict pastel palette, borderless sticky-note elements, ultra-brief node text (<3 words), automatic line breaks, matched arrow colors.
+- **Incremental Transformation Protocol ([`references/transformation.md`](human-requirements/references/transformation.md)):** A 6-stage single-focus pipeline (Inventory -> CJM -> Black-box decoupling -> Mechanical hygiene -> Semantic densification -> Zero-loss traceability gate) preventing generative hallucinations and loss of numerical SLAs.
+
+---
+
 ## 🛠️ Platform Compatibility & Installation
 
 `golden-skills` conforms to the open Agent Skill specification (`SKILL.md` with YAML frontmatter) and is compatible with all leading agentic platforms:
@@ -139,16 +156,19 @@ git clone https://github.com/SpIvanM/golden-skills.git
 # Install globally for Google Antigravity
 cp -r golden-skills/rc ~/.gemini/config/skills/
 cp -r golden-skills/rca ~/.gemini/config/skills/
+cp -r golden-skills/human-requirements ~/.gemini/config/skills/
 
 # Install globally for Claude Code
 cp -r golden-skills/rc ~/.claude/skills/
 cp -r golden-skills/rca ~/.claude/skills/
+cp -r golden-skills/human-requirements ~/.claude/skills/
 ```
 
 Or symlink into your active workspace:
 ```bash
 ln -s /path/to/golden-skills/rc .agents/skills/rc
 ln -s /path/to/golden-skills/rca .agents/skills/rca
+ln -s /path/to/golden-skills/human-requirements .agents/skills/human-requirements
 ```
 
 ---
@@ -167,9 +187,17 @@ golden-skills/
 │   └── references/               # Authoring guidelines & templates
 │       ├── skill-authoring.md
 │       └── skill-authoring_RU.md
-└── rca/                          # Behavioral Root Cause Analysis skill
+├── rca/                          # Behavioral Root Cause Analysis skill
+│   ├── SKILL.md                  # English specification
+│   └── SKILL_RU.md               # Русская спецификация
+└── human-requirements/           # Human Requirements Engineering skill
     ├── SKILL.md                  # English specification
-    └── SKILL_RU.md               # Русская спецификация
+    ├── SKILL_RU.md               # Русская спецификация
+    └── references/               # Visual & transformation protocols
+        ├── diagrams.md
+        ├── diagrams_ru.md
+        ├── transformation.md
+        └── transformation_ru.md
 ```
 
 ---

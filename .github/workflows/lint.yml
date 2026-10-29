@@ -15,7 +15,7 @@ jobs:
 
       - name: Validate Markdown files exist and are not empty
         run: |
-          for file in rc/SKILL.md rc/SKILL_RU.md rca/SKILL.md rca/SKILL_RU.md README.md README_RU.md; do
+          for file in rc/SKILL.md rc/SKILL_RU.md rca/SKILL.md rca/SKILL_RU.md human-requirements/SKILL.md human-requirements/SKILL_RU.md README.md README_RU.md; do
             if [ ! -s "$file" ]; then
               echo "Error: $file is missing or empty"
               exit 1
