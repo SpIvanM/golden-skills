@@ -121,14 +121,6 @@ flowchart TD
 - ‼ Recording obvious or trivial facts in comments is strictly prohibited.
 - If transforming draft requirements, follow the multi-pass protocol in [transformation.md](./references/transformation.md).
 
-### Identification & Cross-Referencing
-- ‼ Numbering requirement bullets or table rows with sequential digits is prohibited.
-- Assign a unique descriptive name enclosed in brackets to every requirement.
-- Cross-reference related requirements strictly by their canonical descriptive bracketed names.
-- 💬 Sequential numbers break whenever requirements are reordered, inserted, or pruned.
-- !!!! ✅ - See [Session Re-authorization] for timeout behavior.
-- !!!!! ❌ - See requirement 3.1.4 for timeout behavior.
-
 ### Visual Diagrams & Flowcharts
 - Illustrate non-linear workflows, state transitions, or distributed interactions with Mermaid diagrams.
 - If authoring diagrams, follow dedicated formatting and styling rules in [diagrams.md](./references/diagrams.md).

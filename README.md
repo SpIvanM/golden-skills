@@ -2,169 +2,210 @@
 
 # 🌟 golden-skills
 
-**The foundational, battle-tested skill suite for autonomous AI coding agents.**  
-*High leverage • Zero context pollution • Strict escalation tiers • Closed-loop self-correction*
+**Фундаментальный эталонный набор навыков для автономных ИИ-агентов разработчика.**  
+*Максимальный рычаг • Защита контекста от мусора • Четкие уровни эскалации • Замкнутый контур самоисправления*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Agents](https://img.shields.io/badge/Agents-Claude%20Code%20%7C%20Antigravity%20%7C%20Cursor%20%7C%20Codex-8A2BE2)](#-platform-compatibility)
+[![Agents](https://img.shields.io/badge/Agents-Claude%20Code%20%7C%20Antigravity%20%7C%20Cursor%20%7C%20Codex-8A2BE2)](#-совместимость-с-платформами-и-установка)
 [![Telegram](https://img.shields.io/badge/Telegram-prompts4llm-2CA5E0?logo=telegram)](https://t.me/prompts4llm)
 
-[English](README.md) • [Русский](README_RU.md)
+[Обзор репозитория](README.md) • [Сравнение с навыками Anthropic](COMPARISON_ANTHROPIC.md) • [Руководство по участию](CONTRIBUTING.md)
 
 </div>
 
 ---
 
-## 💡 Why golden-skills?
+## 💡 Зачем создан golden-skills?
 
-Most AI agent failures are **not** capability issues — they are **governance and feedback issues**:
-- **Instruction drift & context bloat:** LLMs lose adherence as rules grow long, verbose, and vague.
-- **Sycophancy & verbal soothing:** When criticized, agents apologize repeatedly without fixing the underlying system failure.
-- **Wrong audience routing:** Rules intended for one subagent pollute global prompt memory, degrading overall performance.
+**`golden-skills`** — это операционная система правил и навыков для автономных ИИ-агентов, которая **рассматривает поведенческие баги агента строго как баги в коде** (*Agent operating system treating behavioral bugs as code bugs*).
 
-**`golden-skills`** provides a minimal, closed-loop operating framework to systematically govern, diagnose, and refine agent behavior across all modern AI environments.
+Подавляющее большинство сбоев автономных ИИ-агентов вызваны **не** слабостью базовых моделей (Claude 3.5 Sonnet, Gemini 2.0 Flash/Pro, GPT-4o), а **кризисом архитектуры инструкций, делегирования и обратной связи**:
+
+1. **Размывание инструкций и распухание токенов (Instruction Drift & Token Bloat):** По мере накопления инструкций традиционные агентные среды перегружаются длинными нарративными эссе. Модель страдает от эффекта *Lost in the Middle* и теряет ключевые ограничения уже через несколько шагов.
+2. **Угодничество и словесные успокоения (Sycophancy & Verbal Soothing):** Получив замечание, агент генерирует вежливые извинения (*«Извините за ошибку, сейчас исправлю...»*), сжигая окно контекста, но в следующей же сессии совершает тот же сбой, поскольку патч не зафиксирован на диске.
+3. **Отсутствие быстрого отказа (Lack of Fail-Fast):** Агенты бесконечно блуждают в цикле неудачных попыток и скрывают проблемы за догадками, вместо того чтобы немедленно остановиться на первом препятствии и запросить решение.
+4. **Искажение требований при делегировании («Глухой телефон» / Telephone-Game Delegation Distortion):** При многоагентной работе оркестратор пересказывает задачу субагентам своими словами, искажая исходный смысл, числовые SLA и контекстные допуски.
+5. **Загрязнение контекста чужими правилами (Audience Pollution):** Инструкции для узких ролей попадают в глобальный промпт и засоряют память всех остальных агентов.
+6. **Бесконтрольное блуждание:** Без жестких ограничений шагов и короткого поводка агенты запускают слепые рекурсивные поиски, читают файлы целиком и сжигают бюджет токенов.
 
 ---
 
-## 🔄 The Closed-Loop Architecture
+## 🔄 Архитектура замкнутого контура (Closed-Loop Immune System)
 
-The repository revolves around two complementary superpowers:
+В основе репозитория лежит концепция **поведенческого иммунитета**: любая ошибка агента становится катализатором автоматического системного исправления.
 
 ```mermaid
 flowchart TD
-    A["Agent Failure / Behavioral Defect"] --> B["/rca: Root Cause Analysis"]
-    B --> C{"5 Diagnostic Layers"}
-    C -->|Layer 1: Prompt| D["Prompt Calibration"]
-    C -->|Layer 2: Rules| E["Rule Gap / Conflict"]
-    C -->|Layer 3: Skills| F["Missing / Weak Skill"]
-    C -->|Layer 4: Harness| G["System Harness Conflict"]
-    C -->|Layer 5: Context| H["Context Saturation"]
+    A["Сбой агента / Дефект поведения"] --> B["/rca: Анализ первопричин (5 слоев)"]
+    B --> C{"Слой локализации сбоя"}
+    C -->|Слой 1: Промпт| D["Калибровка исходной задачи"]
+    C -->|Слой 2: Правила| E["Пробел / Конфликт в AGENTS.md"]
+    C -->|Слой 3: Навыки| F["Отсутствие шага в SKILL.md"]
+    C -->|Слой 4: Харнесс| G["Конфликт с системной средой"]
+    C -->|Слой 5: Контекст| H["Переполнение токенов (>100k)"]
     
-    E & F --> I["/rc: Rule & Skill Crafter"]
-    I --> J["Audience Routing: Global / Project / Role"]
-    I --> K["Calibrated Escalation Level 0 - 6"]
-    K --> L["Atomic In-Place Disk Update"]
-    L --> M["Permanent Behavioral Immune Response"]
+    E & F --> I["/rc: Мастер формулирования правил"]
+    I --> J["Точная адресация: Global / Project / Role / Hook"]
+    I --> K["Калиброванный уровень эскалации 0 - 4"]
+    I --> L["Синтаксическая компрессия (<=10 слов/строка)"]
+    L --> M["Хирургическая запись правила на диск"]
+    M --> N["Фиксация причины в rule-cases.yaml"]
+    N --> O["Постоянный поведенческий иммунитет"]
 
     style A fill:#ff4d4f,stroke:#333,stroke-width:1px,color:#fff
     style B fill:#1890ff,stroke:#333,stroke-width:1px,color:#fff
     style I fill:#52c41a,stroke:#333,stroke-width:1px,color:#fff
-    style M fill:#722ed1,stroke:#333,stroke-width:1px,color:#fff
+    style O fill:#722ed1,stroke:#333,stroke-width:1px,color:#fff
 ```
 
-1. **Diagnose with `/rca`:** Pinpoint the exact layer that failed (Prompt, Rules, Skills, Harness, Context) using targeted 5 Whys.
-2. **Cure with `/rc`:** Formulate atomic, token-dense directives calibrated to the minimum necessary escalation tier.
+1. **Диагностика через `/rca`:** Выявление истинной первопричины сбоя по 5 слоям без пустых извинений.
+2. **Исправление через `/rc`:** Синтез предельно сжатых атомарных директив с автоматическим линтингом и немедленной фиксацией на диске.
 
 ---
 
-## 📦 Included Skills
+## 🚀 Ключевые архитектурные инновации
 
-### 1. `/rc` — Rule & Skill Crafting
-📁 **Path:** `rc/` • **Description:** *"Use when you need to change or write a rule, skill"*
+### 1. Детерминированная лестница эскалации (Escalation Ladder)
+Вместо размытых рекомендаций или эмоционального капса используется строгая последовательность калибровки воздействия на модель:
 
-Eliminates prompt bloat and enforces high-signal directives. Built on YAGNI and KISS principles.
+| Уровень | Тип правила | Синтаксис и поведение | Пример |
+| :---: | :--- | :--- | :--- |
+| **0** | **Позитивный императив** | Базовое правило, глагол повелительного наклонения | `- Пиши лаконично.` |
+| **1** | **Категорический запрет** | Добавляется строго при сбое модели на уровне 0 | `- ‼ Удаление файлов без подтверждения строго запрещено.` |
+| **2** | **Усиленный запрет КАПСОМ** | Усиление ключевых глаголов при упорных рецидивах | `- ‼ ЗАПУСКАЙ тесты перед фиксацией изменений.` |
+| **3** | **Калиброванные примеры** | Минимальная контрастная пара (1 строка на пример) | `- ✅ [readme](../../folder/file.ext)`<br>`- ❌ [readme](/absolute/path/file.ext)` |
+| **4** | **Механистическое объяснение** | Разрушает иллюзию правильности модели (`💬`) | `- 💬 Словесное успокоение — ложь; исправление требует правки правил.` |
 
-#### Audience Routing (Where rules belong)
-| Audience | Destination | Purpose |
-| :--- | :--- | :--- |
-| **Global** | Root / Global `AGENTS.md` | Universal invariants applying across all agents. |
-| **Project** | `<project-root>/AGENTS.md` | Project-specific tech stack, architectural conventions. |
-| **Scoped** | `.agents/rules/*.md` | Path-based globs and sub-domains. |
-| **Role** | Governing `SKILL.md` | Archetype-specific workflows and competencies. |
-| **Hook / Linter** | Git hooks / CLI scripts | Mechanical, deterministic validations. |
-| **Discard** | *None (Do not persist)* | Ephemeral bugs or one-off developer quirks. |
+### 2. Синтаксическая компрессия и автоматический линтинг
+- **1 правило = 1 строка.** Объединение двух требований в одну строку запрещено.
+- **Лимит:** не более 10 содержательных слов и не более 100 символов на строку.
+- **Полный запрет жирного начертания (`**`) и псевдозаголовков** внутри правил — они рассеивают внимание и тратят токены.
+- **Никаких эпизодических переменных и временных путей** — только универсальные абстракции.
+- Соответствие стандартам проверяется встроенным линтером: `python rc/scripts/lint_rules.py <файл>`.
 
-#### Escalation Levels
-Start new rules at **Level 0**. Escalate strictly upon verified, repeated violations:
+### 3. Протокол короткого поводка (Short-Leash Fail-Fast)
+- Субагенты получают жесткий лимит шагов (20–30 шагов) и лимит контекста ($<40k$ токенов).
+- При обнаружении первого непредвиденного препятствия (отсутствие файла, падение утилиты, неоднозначность) субагент обязан немедленно остановиться.
+- Агент формирует компактный отчет из 2–3 предложений с вариантами решений A/B и передает его вызывающему агенту.
 
-| Level | Identifier | Syntax / Nature | Example |
-| :---: | :---: | :--- | :--- |
-| **0** | Base | Direct imperative verb; maximal brevity | `- Write concisely.` |
-| **1** | `!` | Contrastive imperative or conditional | `- Pass all task messages: inclusion is better than omission.` |
-| **2** | `!!` | Categorical prohibition (`strictly prohibited`) | `- ‼ If context lacks message numbers, launch is strictly prohibited.` |
-| **3** | `!!!` | CAPITALIZED operational verbs for repeated breaches | `- ‼ RUN tests before committing changes.` |
-| **4** | `!!!!` | Concrete positive example (1 line) | `- !!!! ✅ [readme](../../folder/file.ext)` |
-| **5** | `!!!!!` | Concrete negative anti-pattern (1 line) | `- !!!!! ❌ [readme](file:///path/file.ext)` |
-| **6** | `💬` | Mechanistic explanation (1 line) | `- 💬 Verbal soothing is a lie; active fix requires updating rules.` |
+### 4. Протокол чистого контекста (`agy-context`)
+- Исключает эффект «глухого телефона».
+- Субагент при старте выполняет команду `agy-context П<N>`, извлекая дословные реплики пользователя из журнала без искажающего пересказа оркестратором.
 
-#### Good vs. Bad Directives
+### 5. Хирургическая навигация Tier 0 / Tier 1
+- Слепой рекурсивный поиск (`grep -r` по корню) и чтение файлов целиком строго запрещены.
+- Навигация выполняется точечными срезами символов и чтением блоков до 50 строк.
 
-| ❌ Bad (Bloated, Weak, Ambiguous) | ✅ Good (Atomic, High-Density, Enforceable) |
-| :--- | :--- |
-| `- **Paths**: Always use relative paths, and also ask confirmation before rm.` | `- Use relative paths for all workspace references.`<br>`- ‼ Removing files without user confirmation is strictly prohibited.` |
-| `- Blind launch ban: launching without message numbers is prohibited.` | `- ‼ If context lacks message numbers, launching a subagent is strictly prohibited.` |
-| `- Please make sure you write tests whenever you can.` | `- Write failing tests before modifying implementation code.` |
-
----
-
-### 2. `/rca` — Targeted Behavioral Root Cause Analysis
-📁 **Path:** `rca/` • **Description:** *"Use when you need to find defect root cause via 5 why, rca, or /rca"*
-
-A structured, bias-aware diagnostic framework for AI agents.
-
-#### The 5 Diagnostic Layers
-1. **Layer 1 (Prompt):** Missing boundaries, ambiguous instructions, unstated user assumptions.
-2. **Layer 2 (Rules):** Contradictory rules, gaps in `AGENTS.md`, or perverse incentive structures.
-3. **Layer 3 (Skills):** Ambiguous step sequences, missing verification gates in `SKILL.md`.
-4. **Layer 4 (Harness):** Developer system prompts or platform constraints conflicting with user goals.
-5. **Layer 5 (Context):** Context saturation (>100k tokens), attention dispersion, or instruction drift.
-
-#### Core Diagnostic Principles
-- **Strict Anti-Reassurance:** Apologetic commentary and verbal promises are strictly forbidden. Fixes must be structural and written to disk.
-- **Model Priors Assessment:** Accounts for inherent LLM biases (eager agreement, sycophancy, premature execution).
-- **Principle Over Instance:** Generalize episodic errors into systemic behavioral archetypes — never put temporary filenames into rules.
-- **Seamless `/rc` Handoff:** Every `/rca` session terminates with an exact specification ready for execution by `/rc`.
+### 6. Функциональный билингвизм
+- Публичные документы, отчеты и диалог с пользователем ведутся исключительно на русском языке.
+- Внутренние мысли (`thought`), комментарии в коде, правила и меж-агентные сообщения — исключительно на английском языке для максимальной точности следования логике LLM.
 
 ---
 
-### 3. `/human-requirements` — Human Requirements Engineering
-📁 **Path:** `human-requirements/` • **Description:** *"Use when you need to write software requirement, product specification, system user story, or acceptance criteria"*
+## 📊 Сравнение: IAM Golden-Skills vs. Навыки Anthropic
 
-Engineers dense, human-readable specifications with maximum signal, eliminating synthetic AI verbosity and corporate boilerplate. Embodies a principal systems analyst with deep architecture expertise.
+Подробный аналитический разбор доступен в документе [COMPARISON_ANTHROPIC.md](./COMPARISON_ANTHROPIC.md).
 
-#### Core Pillars
-- **Anti-AI-Slop Typography:** Eliminates inline bold pseudotitles (`- **Title**: ...`), curly quotes, and synthetic em-dashes. Relies on clean Markdown headings and active verbs.
-- **Layered Progressive Disclosure:** Strict 3-tier separation:
-  - *Layer 1 (Business):* Strategic goals, opaque black-box system behavior, CJM through user eyes, explicit scope bounds.
-  - *Layer 2 (System):* Data contracts, state transitions, validation logic, precise edge cases.
-  - *Layer 3 (Architecture):* Component topology, asynchronous sequence flows, communication protocols, non-functional SLAs.
-- **Single-Screen Ergonomics:** Chunks specifications into compact sections fitting a single viewport to eliminate reader cognitive fatigue.
-- **Visual Diagramming Protocol ([`references/diagrams.md`](human-requirements/references/diagrams.md)):** Strict pastel palette, borderless sticky-note elements, ultra-brief node text (<3 words), automatic line breaks, matched arrow colors.
-- **Incremental Transformation Protocol ([`references/transformation.md`](human-requirements/references/transformation.md)):** A 6-stage single-focus pipeline (Inventory -> CJM -> Black-box decoupling -> Mechanical hygiene -> Semantic densification -> Zero-loss traceability gate) preventing generative hallucinations and loss of numerical SLAs.
+| Критерий | Навыки Anthropic (Claude Code) | Стандартные правила Cursor / OSS | IAM Golden-Skills |
+| :--- | :--- | :--- | :--- |
+| **Формат правил** | Длинные текстовые эссе, нарратив | Произвольные списки разной структуры | 1 строка $\le 10$ слов, строгий линтинг |
+| **Контур обратной связи** | Ручной; пользователь правит промпты сам | Отсутствует; правила растут бесконтрольно | Замкнутый цикл: 5-слойный `/rca` $\to$ запись через `/rc` |
+| **Реакция на замечания** | Словесные извинения («I apologize...») | Повторная генерация без фиксации на диске | Запрет извинений; обязательная запись правила на диск |
+| **Эскалация требований** | Мягкие пожелания (*"please ensure"*) | Случайные восклицательные знаки | 5 детерминированных ступеней эскалации |
+| **Трассировка изменений** | Не поддерживается | Обычные коммиты без фиксации причин | Журнал `rule-cases.yaml` + why-сообщения коммитов |
+| **Передача задач** | Пересказ своими словами («глухой телефон») | Ручной копипаст промпта | Прямое извлечение через `agy-context П<N>` |
+| **Контроль исполнения** | Неограниченное блуждание до исчерпания окна | Зависание в бесконечных циклах ошибок | Лимит шагов 20–30, Short-Leash, опции A/B |
+| **Навигация по коду** | Слепой grep и чтение файлов целиком | Неконтролируемый поиск | Хирургический поиск, лимит $<50$ строк |
 
 ---
 
-## 🛠️ Platform Compatibility & Installation
+## 📦 Каталог эталонных навыков
 
-`golden-skills` conforms to the open Agent Skill specification (`SKILL.md` with YAML frontmatter) and is compatible with all leading agentic platforms:
+### 1. [`/rc`](rc/SKILL.md) — Мастер правил и навыков (Rule & Skill Crafting)
+📁 **Путь:** `rc/` • **Описание:** *"Применяй когда нужно создать, изменить или оптимизировать правило, инструкцию AGENTS.md или навык"*
 
-| Platform | Skill Location | Support Status |
+Ликвидирует словесный мусор и обеспечивает максимальную плотность сигнала: $\text{Эффективность} = \frac{\text{Сигнал}}{\text{Шум}}$.
+
+- **Проектирование адресата:**
+  - *Global `AGENTS.md`:* Правила, действующие в $\ge 80\%$ всех задач.
+  - *Project `AGENTS.md`:* Правила, действующие в $\ge 80\%$ задач конкретного проекта.
+  - *Role Skill (`SKILL.md`):* Правила, действующие в $\ge 70\%$ задач конкретной роли.
+  - *Subskill (`references/`):* Выделяется при накоплении $\ge 6$ правил для специфической ситуации.
+  - *Linter / Hook:* Механические проверки форматов и синтаксиса.
+  - *Discard:* Разовые прихоти или ошибки кода (не сохраняются в правилах).
+- **Вспомогательные руководства:**
+  - [skill-authoring.md](rc/references/skill-authoring.md) — стандарты создания новых навыков.
+  - [subskill-authoring.md](rc/references/subskill-authoring.md) — модульная декомпозиция поднавыков.
+  - [skill-extraction.md](rc/references/skill-extraction.md) — протокол извлечения знаний в навык.
+  - [skill-refactoring.md](rc/references/skill-refactoring.md) — очистка устаревших правил.
+  - [utility-setup.md](rc/references/utility-setup.md) — интеграция утилит и линтеров.
+
+---
+
+### 2. [`/rca`](rca/SKILL.md) — Анализ первопричин сбоев (Root Cause Analysis)
+📁 **Путь:** `rca/` • **Описание:** *"Применяй когда обнаружено нарушение правила или шаг агента был неоптимален"*
+
+Структурированный диагностический фреймворк, отсекающий ложное раскаяние агента:
+
+- **5 слоев локализации:**
+  1. *Промпт:* Отсутствие границ, невысказанные предположения.
+  2. *Правила:* Конфликты формулировок, пробелы в `AGENTS.md`.
+  3. *Навыки:* Пропущенные верификационные гейты в `SKILL.md`.
+  4. *Харнесс:* Конфликты с системной средой платформы.
+  5. *Контекст:* Переполнение контекста ($>100k$ токенов), потеря внимания.
+- **Принцип обобщения:** Единичные эпизоды обобщаются до системных паттернов — временные пути и имена файлов в правила никогда не попадают.
+- **Бесшовная передача:** Финал диагностики формирует готовое ТЗ для немедленного исполнения навыком `/rc`.
+
+---
+
+### 3. [`/human-requirements`](human-requirements/SKILL.md) — Инженерия требований для людей
+📁 **Путь:** `human-requirements/` • **Описание:** *"Применяй когда нужно составить спецификацию, пользовательскую историю или критерии приемки"*
+
+Проектирует сверхплотные, легко читаемые спецификации без синтетической «воды» и корпоративного канцелярита:
+
+- **Анти-AI типографика:** Полное удаление псевдозаголовков, курсивов, висячих тире и вводных слов.
+- **3-уровневое разделение:**
+  - *Бизнес-слой:* Цели, черный ящик, CJM глазами пользователя, явные границы скоупа.
+  - *Системный слой:* Контракты данных, переходы состояний, валидации, граничные случаи.
+  - *Архитектурный слой:* Топология компонентов, диаграммы взаимодействия, SLA.
+- **Эргономика единого экрана:** Дробление разделов по размеру экрана для исключения когнитивной перегрузки.
+- **Визуальные протоколы:**
+  - [diagrams.md](human-requirements/references/diagrams.md) — пастельные схемы, текст узлов $\le 3$ слов, согласованные стрелки.
+  - [transformation.md](human-requirements/references/transformation.md) — 6-стадийный пайплайн сжатия без потери численных требований.
+
+---
+
+## 🛠️ Совместимость с платформами и установка
+
+Навыки соответствуют открытому стандарту Agent Skill (`SKILL.md` с заголовком YAML frontmatter) и работают во всех современных средах:
+
+| Платформа | Расположение навыков | Статус |
 | :--- | :--- | :---: |
-| **Google Antigravity** | `~/.gemini/config/skills/` or `<project>/.agents/skills/` | ✅ Native |
-| **Claude Code** | `~/.claude/skills/` or `<project>/.claude/skills/` | ✅ Native |
-| **Cursor** | `.cursor/rules/` or project skills | ✅ Compatible |
-| **OpenAI Codex / CLI** | `.codex/skills/` or project config | ✅ Compatible |
-| **Hermes Agent** | `~/.hermes/skills/` | ✅ Compatible |
+| **Google Antigravity** | `~/.gemini/config/skills/` или `<project>/.agents/skills/` | ✅ Нативно |
+| **Claude Code** | `~/.claude/skills/` или `<project>/.claude/skills/` | ✅ Нативно |
+| **Cursor** | `.cursor/rules/` или проектные навыки | ✅ Совместимо |
+| **OpenAI Codex / CLI** | `.codex/skills/` или системная конфигурация | ✅ Совместимо |
+| **Hermes Agent** | `~/.hermes/skills/` | ✅ Совместимо |
 
-### Quick Installation
+### Быстрая установка
 
 ```bash
-# Clone the repository
+# Клонирование репозитория
 git clone https://github.com/SpIvanM/golden-skills.git
 
-# Install globally for Google Antigravity
+# Установка для Google Antigravity
 cp -r golden-skills/rc ~/.gemini/config/skills/
 cp -r golden-skills/rca ~/.gemini/config/skills/
 cp -r golden-skills/human-requirements ~/.gemini/config/skills/
 
-# Install globally for Claude Code
+# Установка для Claude Code
 cp -r golden-skills/rc ~/.claude/skills/
 cp -r golden-skills/rca ~/.claude/skills/
 cp -r golden-skills/human-requirements ~/.claude/skills/
 ```
 
-Or symlink into your active workspace:
+Или создание символических ссылок в рабочем проекте:
 ```bash
 ln -s /path/to/golden-skills/rc .agents/skills/rc
 ln -s /path/to/golden-skills/rca .agents/skills/rca
@@ -173,48 +214,46 @@ ln -s /path/to/golden-skills/human-requirements .agents/skills/human-requirement
 
 ---
 
-## 📂 Repository Structure
+## 📂 Структура репозитория
 
 ```text
 golden-skills/
-├── LICENSE                       # MIT License
-├── README.md                     # English documentation
-├── README_RU.md                  # Полная русскоязычная документация
-├── CONTRIBUTING.md               # Guidelines for contributors
-├── rc/                           # Rule & Skill Crafting skill
-│   ├── SKILL.md                  # English specification
-│   ├── SKILL_RU.md               # Русская спецификация
-│   └── references/               # Authoring guidelines & templates
+├── LICENSE                       # Лицензия MIT
+├── README.md                     # Основная документация репозитория (на русском языке)
+├── README_RU.md                  # Зеркало документации
+├── COMPARISON_ANTHROPIC.md       # Аналитическое сравнение с экосистемой Anthropic
+├── CONTRIBUTING.md               # Руководство по контрибуции
+├── rc/                           # Навык создания и оптимизации правил (/rc)
+│   ├── SKILL.md                  # Спецификация на английском языке
+│   ├── SKILL_RU.md               # Спецификация на русском языке
+│   ├── rule-cases.yaml           # Реестр прецедентов и причин изменений
+│   ├── scripts/lint_rules.py     # Автоматический линтер правил
+│   └── references/               # Руководства по созданию поднавыков
 │       ├── skill-authoring.md
-│       └── skill-authoring_RU.md
-├── rca/                          # Behavioral Root Cause Analysis skill
-│   ├── SKILL.md                  # English specification
-│   └── SKILL_RU.md               # Русская спецификация
-└── human-requirements/           # Human Requirements Engineering skill
-    ├── SKILL.md                  # English specification
-    ├── SKILL_RU.md               # Русская спецификация
-    └── references/               # Visual & transformation protocols
+│       ├── subskill-authoring.md
+│       ├── skill-extraction.md
+│       ├── skill-refactoring.md
+│       └── utility-setup.md
+├── rca/                          # Навык анализа первопричин (/rca)
+│   ├── SKILL.md                  # Спецификация на английском языке
+│   └── SKILL_RU.md               # Спецификация на русском языке
+└── human-requirements/           # Навык проектирования требований (/human-requirements)
+    ├── SKILL.md                  # Спецификация на английском языке
+    ├── SKILL_RU.md               # Спецификация на русском языке
+    └── references/               # Протоколы диаграмм и трансформации
         ├── diagrams.md
-        ├── diagrams_ru.md
-        ├── transformation.md
-        └── transformation_ru.md
+        └── transformation.md
 ```
 
 ---
 
-## 🤝 Contributing
+## 👤 Автор и сообщество
 
-Contributions are welcome! If you have refined an escalation tier, created a specialized diagnostic layer, or want to submit another foundational skill, please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-## 👤 Author & Community
-
-- **Author:** Ivan Moiseev ([@SpIvanM](https://github.com/SpIvanM)) — Senior Product Manager & AI Agent Architect
-- **Telegram Channel:** [t.me/prompts4llm](https://t.me/prompts4llm) — Prompt engineering, agent architectures, and LLM practices.
+- **Автор:** Иван Моисеев ([@SpIvanM](https://github.com/SpIvanM)) — Senior Product Manager и архитектор мультиагентных систем.
+- **Telegram-канал:** [t.me/prompts4llm](https://t.me/prompts4llm) — промпт-инжиниринг, агентные архитектуры и передовые практики LLM.
 
 ---
 
-## 📄 License
+## 📄 Лицензия
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+Распространяется под лицензией **MIT**. Подробности в файле [`LICENSE`](LICENSE).
