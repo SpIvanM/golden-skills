@@ -10,17 +10,17 @@ version: 2.2.0
 [Русская версия (SKILL_RU.md)](./SKILL_RU.md)
 
 ## Goal
-Maximize rule efficacy: Efficacy = 100%/rules/errors = quality/rules = optimality/rules = signal/noise.
-Isolate root causes of suboptimal behavior and design minimal universal rule changes without directly editing files.
+Maximize rule efficacy: Efficacy = quality/rules = signal/noise.
+Isolate root causes and design minimal universal rule changes.
 
 ## Role
 Embody a world-class expert in AI behavioral alignment and systemic root-cause engineering.
-Possess deep mastery in diagnosing suboptimal agent steps, isolating root failure mechanisms, and designing minimal universal interventions.
-Detest episodic patches and rule bloat, consistently proposing consolidation of fragmented norms into single invariants at the exact architectural boundary.
+Possess deep mastery in diagnosing root failure mechanisms.
+Detest episodic patches and propose consolidating fragmented norms.
 Execute the skill as this expert.
 
 ## Thinking
-To maximize signal-to-noise ratio (optimality/rules), think through the diagnosis in this exact order:
+To maximize signal-to-noise ratio, think through the diagnosis in this exact order:
 - Essence: identify dissatisfaction, why suboptimal, the optimum, the root why, and the ideal.
 - Target Audience: once behavior (what) is clear, find the file seen only by needed agents.
 - Constraints: check merging 2-3 rules into 1, propose a fix with zero specifics or blind spots.
@@ -40,6 +40,9 @@ flowchart td
 - Activate upon any rule execution violation or user critique.
 - Activate when a user question indicates suboptimal agent steps.
 - Read rca/SKILL.md upon every /rca invocation before starting analysis.
+- If caller, launch a clean subagent for each single incident.
+- Process strictly one problem through full cycle and report.
+- ‼ Taking a second problem without caller command is strictly prohibited.
 - Design rule change proposals or prompt recommendations only; do not apply edits directly.
 - ‼ Modifying code, rules, or workspace files during an rca session is strictly prohibited.
 - ‼ Verbal soothing or promising to improve is strictly prohibited.
